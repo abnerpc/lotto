@@ -1,0 +1,39 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* This file is for your main application CSS */
+.attempt-item.phx-enter {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.attempt-item {
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.attempt-item.phx-leave {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.match-row,
+.attempt-row {
+  padding: 0.5rem 0.75rem;
+  background: rgb(24 24 27); /* zinc-900 */
+  border-radius: 0.5rem;
+  font-family: monospace;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.match-row.phx-enter,
+.attempt-row.phx-enter {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.match-row.phx-leave,
+.attempt-row.phx-leave {
+  opacity: 0;
+  transform: translateY(6px);
+}

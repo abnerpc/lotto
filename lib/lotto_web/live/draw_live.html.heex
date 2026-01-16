@@ -1,0 +1,48 @@
+<div class="max-w-7xl mx-auto p-6 space-y-6">
+  <div class="md:col-span-2">
+    <h1 class="text-2xl font-semibold mb-2"></h1><br/>
+    <p class="text-zinc-300 text-sm leading-relaxed">
+    Esta página gera 6 números aleatórios a cada segundo,
+    verifica se eles correspondem aos números sorteados
+    na última Mega da Virada e registra, à esquerda,
+    os jogos que acertaram 100% dos números.
+    </p>
+    <p class="text-zinc-300 text-sm leading-relaxed">
+    Números sorteados: 09 13 21 32 33 59
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Matches -->
+    <section class="bg-zinc-900 rounded-xl p-4 shadow">
+      <h2 class="text-lg font-medium mb-4">Últimos acertos</h2>
+
+      <div id="matches" phx-update="stream" class="space-y-2">
+        <%= for {dom_id, match} <- @streams.matches do %>
+          <div id={dom_id} class="match-row">
+            <%= Calendar.strftime(match.inserted_at, "%Y-%m-%d %H:%M:%S") %> —
+            <%= two_digits(match.n1) %> <%= two_digits(match.n2) %> <%= two_digits(match.n3) %>
+            <%= two_digits(match.n4) %> <%= two_digits(match.n5) %> <%= two_digits(match.n6) %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+    <!-- Attempts -->
+    <section class="bg-zinc-900 rounded-xl p-4 shadow">
+      <h2 class="text-lg font-medium mb-4">Últimas tentativas</h2>
+
+      <div id="attempts" phx-update="stream" class="space-y-2">
+        <%= for {dom_id, attempt} <- @streams.attempts do %>
+          <div id={dom_id} class="attempt-row">
+            <%= Calendar.strftime(attempt.inserted_at, "%Y-%m-%d %H:%M:%S") %> —
+            <%= two_digits(attempt.n1) %> <%= two_digits(attempt.n2) %> <%= two_digits(attempt.n3) %>
+            <%= two_digits(attempt.n4) %> <%= two_digits(attempt.n5) %> <%= two_digits(attempt.n6) %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+  </div>
+</div>
